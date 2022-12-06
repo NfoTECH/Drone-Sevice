@@ -69,4 +69,313 @@ While implementing your solution **please take care of the following requirement
 
 ---
 
+### CONFIGURATION
+#### Database (H2) configuration
+- `spring.datasource.driver-class-name=org.h2.Driver`
+- `spring.datasource.url=jdbc:h2:mem:dronedb`
+- `spring.datasource.username=sa`
+- `spring.datasource.password=password`
+
+- `server.port=8082`
+
+### BUILD AND RUN INSTRUCTIONS
+
+Pull the project from the repository and run the following commands:
+```cmd
+mvn dependency:resolve
+mvn compile
+mvn spring-boot:run
+```
+
+#### Screenshot of the preloaded Drone data
+![Drone data](src/main/resources/static/screenshots/Drones.png)
+
+#### Screenshot of the preloaded Medication data
+![Medication data](src/main/resources/static/screenshots/Medications.png)
+
+#### Screenshot of the mapping between Drone and Medication data linked by Delivery ID
+![Delivery-Medications data](src/main/resources/static/screenshots/Delivery-Medications.png)
+![Delivery-Drone data](src/main/resources/static/screenshots/Deliveries.png)
+
+### API ENDPOINTS
+
+#### 1. REGISTER DRONE
+```bash
+* `POST http://localhost:8082/api/v1/drone/register`
+
+```bash
+curl --location --request POST 'http://localhost:8082/api/v1/drone/register' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "serialNumber" : "65778A743HK",
+    "model": "HEAVYWEIGHT",
+    "weightLimit": 450,
+    "batteryCapacity": 98
+}'
+```
+
+#### Request Body
+```json
+{
+    "serialNumber" : "65778A743HK",
+    "model": "HEAVYWEIGHT",
+    "weightLimit": 450,
+    "batteryCapacity": 98
+}
+```
+#### Expected Response
+```json
+{
+  "message": "Successful",
+  "status": true,
+  "data": {
+    "id": 11,
+    "createdAt": "2022-12-06 16:49:56 PM",
+    "updatedAt": "2022-12-06 16:49:56 PM",
+    "serialNumber": "65778A743HK",
+    "model": "HEAVYWEIGHT",
+    "weightLimit": 450.0,
+    "batteryCapacity": 98.0,
+    "state": "IDLE"
+  }
+}
+```
+#### Screenshot of the expected response
+![Register Drone](src/main/resources/static/screenshots/Register-Drone.png)
+
+#### 2. GET AVAILABLE DRONE FOR LOADING
+
+* `GET http://localhost:8082/api/v1/drone/available`
+
+```bash
+curl --location --request GET 'http://localhost:8082/api/v1/drone/available'
+```
+#### Expected Response
+```json
+{
+  "message": "Retrieved successfully",
+  "status": true,
+  "data": [
+    {
+      "id": 2,
+      "createdAt": "2022-12-06 16:48:10 PM",
+      "updatedAt": "2022-12-06 16:48:10 PM",
+      "serialNumber": "WIND8060Q20DJ1",
+      "model": "CRUISERWEIGHT",
+      "weightLimit": 250.0,
+      "batteryCapacity": 100.0,
+      "state": "IDLE"
+    },
+    {
+      "id": 3,
+      "createdAt": "2022-12-06 16:48:10 PM",
+      "updatedAt": "2022-12-06 16:48:10 PM",
+      "serialNumber": "SPARK140A0G0CI",
+      "model": "LIGHTWEIGHT",
+      "weightLimit": 150.0,
+      "batteryCapacity": 100.0,
+      "state": "IDLE"
+    },
+    {
+      "id": 4,
+      "createdAt": "2022-12-06 16:48:10 PM",
+      "updatedAt": "2022-12-06 16:48:10 PM",
+      "serialNumber": "MAVIC2EA140KO3",
+      "model": "CRUISERWEIGHT",
+      "weightLimit": 250.0,
+      "batteryCapacity": 100.0,
+      "state": "IDLE"
+    },
+    {
+      "id": 5,
+      "createdAt": "2022-12-06 16:48:10 PM",
+      "updatedAt": "2022-12-06 16:48:10 PM",
+      "serialNumber": "MATRICE600V2D4",
+      "model": "MIDDLEWEIGHT",
+      "weightLimit": 350.0,
+      "batteryCapacity": 100.0,
+      "state": "IDLE"
+    },
+    {
+      "id": 6,
+      "createdAt": "2022-12-06 16:48:10 PM",
+      "updatedAt": "2022-12-06 16:48:10 PM",
+      "serialNumber": "INSPIREV2FHW12",
+      "model": "MIDDLEWEIGHT",
+      "weightLimit": 350.0,
+      "batteryCapacity": 50.0,
+      "state": "IDLE"
+    },
+    {
+      "id": 7,
+      "createdAt": "2022-12-06 16:48:10 PM",
+      "updatedAt": "2022-12-06 16:48:10 PM",
+      "serialNumber": "AGRAST2OP1415Q",
+      "model": "CRUISERWEIGHT",
+      "weightLimit": 250.0,
+      "batteryCapacity": 100.0,
+      "state": "IDLE"
+    },
+    {
+      "id": 8,
+      "createdAt": "2022-12-06 16:48:10 PM",
+      "updatedAt": "2022-12-06 16:48:10 PM",
+      "serialNumber": "EVO13ZX27YU4K",
+      "model": "HEAVYWEIGHT",
+      "weightLimit": 500.0,
+      "batteryCapacity": 100.0,
+      "state": "IDLE"
+    },
+    {
+      "id": 9,
+      "createdAt": "2022-12-06 16:48:10 PM",
+      "updatedAt": "2022-12-06 16:48:10 PM",
+      "serialNumber": "SIRIUS13ZX49Y",
+      "model": "HEAVYWEIGHT",
+      "weightLimit": 500.0,
+      "batteryCapacity": 240.0,
+      "state": "IDLE"
+    },
+    {
+      "id": 11,
+      "createdAt": "2022-12-06 16:49:56 PM",
+      "updatedAt": "2022-12-06 16:49:56 PM",
+      "serialNumber": "65778A743HK",
+      "model": "HEAVYWEIGHT",
+      "weightLimit": 450.0,
+      "batteryCapacity": 98.0,
+      "state": "IDLE"
+    }
+  ]
+}
+```
+#### Screenshot of the expected response
+![Get Available Drone](src/main/resources/static/screenshots/Available-Drones.png)
+
+#### 3. LOAD DRONE WITH MEDICATION
+
+* `POST http://localhost:8082/api/v1/drone/load-medication/SPARK140A0G0CI`
+
+```bash
+curl --location --request POST 'http://localhost:8082/api/v1/drone/load-medication/SPARK140A0G0CI' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "medicationCodes":["IBUFEN20", "AMOXY50","MORPH10"]
+}'
+```
+
+#### Request Body
+```json
+{
+    "medicationCodes":["IBUFEN20", "AMOXY50","MORPH10"]
+}
+```
+
+#### Expected Response
+```json
+{
+  "message": "Successful",
+  "status": true,
+  "data": {
+    "drone": {
+      "serialNumber": "SPARK140A0G0CI",
+      "batteryLevel": 100.0
+    },
+    "medications": [
+      {
+        "name": "Ibuprofen",
+        "weight": 20.0,
+        "code": "IBUFEN20",
+        "image": "src/main/resources/static/images/ibuprofen.png"
+      },
+      {
+        "name": "Amoxicillin",
+        "weight": 50.0,
+        "code": "AMOXY50",
+        "image": "src/main/resources/static/images/amoxicillin.png"
+      },
+      {
+        "name": "Morphine",
+        "weight": 55.0,
+        "code": "MORPH10",
+        "image": "src/main/resources/static/images/morphine.png"
+      }
+    ],
+    "createAt": "2022-12-06 16:53:36 PM"
+  }
+}
+```
+#### Screenshot of the expected response
+![Load Medication](src/main/resources/static/screenshots/Load-Medication.png)
+
+#### 4. CHECK LOADED MEDICATION FOR A GIVEN DRONE
+
+* `GET http://localhost:8082/api/v1/drone/check-loaded-medication/SPARK140A0G0CI`
+
+```bash
+curl --location --request GET 'http://localhost:8082/api/v1/drone/check-loaded-medication/SPARK140A0G0CI'
+```
+
+#### Expected Response
+```json
+{
+  "message": "Retrieved successfully",
+  "status": true,
+  "data": {
+    "drone": {
+      "serialNumber": "SPARK140A0G0CI",
+      "batteryLevel": 100.0
+    },
+    "medications": [
+      {
+        "name": "Ibuprofen",
+        "weight": 20.0,
+        "code": "IBUFEN20",
+        "image": "src/main/resources/static/images/ibuprofen.png"
+      },
+      {
+        "name": "Amoxicillin",
+        "weight": 50.0,
+        "code": "AMOXY50",
+        "image": "src/main/resources/static/images/amoxicillin.png"
+      },
+      {
+        "name": "Morphine",
+        "weight": 55.0,
+        "code": "MORPH10",
+        "image": "src/main/resources/static/images/morphine.png"
+      }
+    ],
+    "createAt": "2022-12-06 16:53:36 PM"
+  }
+}
+```
+#### Screenshot of the expected response
+![Check Loaded Medication](src/main/resources/static/screenshots/Check-Loaded-Medication.png)
+
+#### 5. CHECK DRONE BATTERY LEVEL FOR A GIVEN DRONE
+
+* `GET http://localhost:8082/api/v1/drone/check-battery/SPARK140A0G0CI`
+
+```bash
+curl --location --request GET 'http://localhost:8082/api/v1/drone/check-battery/SPARK140A0G0CI'
+```
+
+#### Expected Response
+```json
+{
+  "message": "Retrieved successfully",
+  "status": true,
+  "data": {
+    "serialNumber": "SPARK140A0G0CI",
+    "batteryLevel": 100.0
+  }
+}
+```
+#### Screenshot of the expected response
+![Check Battery Level](src/main/resources/static/screenshots/Check-Battery.png)
+
+#### Screenshot of Battery Audit Log
+![Battery Audit Log](src/main/resources/static/screenshots/Battery-Audit-Log.png)
+
 :scroll: **END** 
