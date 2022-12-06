@@ -1,6 +1,9 @@
 package com.fortunate.nwachukwu.droneservice.controller;
 
+import com.fortunate.nwachukwu.droneservice.model.Medication;
 import com.fortunate.nwachukwu.droneservice.payload.request.DroneRequest;
+import com.fortunate.nwachukwu.droneservice.payload.request.LoadingRequest;
+import com.fortunate.nwachukwu.droneservice.payload.request.MedicationRequest;
 import com.fortunate.nwachukwu.droneservice.payload.response.ApiResponse;
 import com.fortunate.nwachukwu.droneservice.service.DroneService;
 import com.fortunate.nwachukwu.droneservice.util.Responder;
@@ -9,8 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-
-import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @AllArgsConstructor
@@ -27,5 +28,20 @@ public class DroneController {
     @GetMapping("/available")
     public ResponseEntity<ApiResponse> getAvailableDrone(){
         return Responder.found(droneService.listAvailableDronesForLoading());
+    }
+
+    @PostMapping("/load-medication/{drone-serial}")
+    public ResponseEntity<ApiResponse> loadADroneWithMedication(@PathVariable("drone-serial") String serialNumber , @RequestBody LoadingRequest medicationCodes) {
+        return Responder.success(droneService.loadDroneWithMedication(serialNumber, medicationCodes));
+    }
+
+    @GetMapping("/check-battery/{drone-serial}")
+    public ResponseEntity<ApiResponse> checkDroneBatteryLevel(@PathVariable("drone-serial") String serialNumber) {
+        return Responder.found(droneService.checkDroneBatteryLevel(serialNumber));
+    }
+
+    @GetMapping("/check-loaded-medication/{drone-serial}")
+    public ResponseEntity<ApiResponse> getLoadedMedication(@PathVariable("drone-serial") String serialNumber) {
+        return Responder.found(droneService.checkLoadedMedicationForADrone(serialNumber));
     }
 }
