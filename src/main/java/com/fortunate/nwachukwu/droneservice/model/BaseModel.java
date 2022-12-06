@@ -24,12 +24,12 @@ public class BaseModel implements Serializable {
     private Long id;
 
     @CreationTimestamp
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss a")
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss a")
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
