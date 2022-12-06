@@ -3,15 +3,16 @@ package com.fortunate.nwachukwu.droneservice.payload.request;
 import com.fortunate.nwachukwu.droneservice.model.Medication;
 import com.fortunate.nwachukwu.droneservice.model.enums.DroneModel;
 import com.fortunate.nwachukwu.droneservice.model.enums.DroneState;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
 import javax.validation.constraints.*;
 import java.util.List;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class DroneRequest {
 
     @NotBlank(message = "Drone serialNumber is required")
