@@ -32,7 +32,4 @@ public class Drone extends BaseModel {
     @Enumerated(EnumType.STRING)
     private DroneState state;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "drone")
-    private List<Medication> medication;
 }
