@@ -1,9 +1,8 @@
 package com.fortunate.nwachukwu.droneservice.exception;
 
 
-public class MaximumWeightExceededException extends RuntimeException {
-    public MaximumWeightExceededException(String message) {
+public class WeightLimitExceededException extends RuntimeException {
+    public WeightLimitExceededException(String message) {
         super(message);
     }
-
 }
