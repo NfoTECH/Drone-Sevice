@@ -51,7 +51,7 @@
     "name" : "Fentanyl",
     "weight" : 45.0,
     "code" : "FENT10",
-    "image" : "src/main/resources/static/images/fentanyl.png"
+    "image" : "src/main/resources/static/images/ciprofloxacin.png"
   },
   {
     "name" : "Epinephrine",
