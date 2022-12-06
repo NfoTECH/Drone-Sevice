@@ -60,14 +60,14 @@
     "serialNumber" : "SIRIUS13ZX49Y",
     "model" : "HEAVYWEIGHT",
     "weightLimit" : 500.0,
-    "batteryCapacity" : 24,
+    "batteryCapacity" : 240,
     "state" : "IDLE"
   },
   {
     "serialNumber" : "VEGA13ZX50YUA",
     "model" : "LIGHTWEIGHT",
     "weightLimit" : 150.0,
-    "batteryCapacity" : 2000.0,
+    "batteryCapacity" : 24.0,
     "state" : "IDLE"
   }
 ]
