@@ -88,7 +88,7 @@ mvn spring-boot:run
 ```
 
 #### Screenshot of the preloaded Drone data
-![Drone data](src/main/resources/static/screenshots/Drones.png)
+![Drone data](src/main/resources/static/screenshots/Drone.png)
 
 #### Screenshot of the preloaded Medication data
 ![Medication data](src/main/resources/static/screenshots/Medications.png)
