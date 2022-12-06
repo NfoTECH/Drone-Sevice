@@ -22,12 +22,12 @@ public class ExceptionController {
 
     @ExceptionHandler(DroneBatteryLowException.class)
     public ResponseEntity<?> droneBatteryLowException(DroneBatteryLowException exception) {
-        return Responder.notAllowed(exception);
+        return Responder.lowBattery(exception);
     }
 
-    @ExceptionHandler(MaximumWeightExceededException.class)
-    public ResponseEntity<?> maximumWeightExceededException(MaximumWeightExceededException exception) {
-        return Responder.notAllowed(exception);
+    @ExceptionHandler(WeightLimitExceededException.class)
+    public ResponseEntity<?> maximumWeightExceededException(WeightLimitExceededException exception) {
+        return Responder.overWeight(exception);
     }
 
     @ExceptionHandler(MedicationAlreadyExistException.class)
@@ -39,6 +39,12 @@ public class ExceptionController {
     public ResponseEntity<?> noAvailableDroneException(NoAvailableDroneException exception) {
         return Responder.notFound(exception);
     }
+
+    @ExceptionHandler(InvalidLoadRequestException.class)
+    public ResponseEntity<?> invalidLoadRequestException(InvalidLoadRequestException exception) {
+        return Responder.badRequest(exception);
+    }
+
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
