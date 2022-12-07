@@ -98,7 +98,6 @@ class DroneControllerTest {
                 .batteryCapacity(10.0)
                 .state(DroneState.IDLE)
                 .build();
-        LocalDateTime now = LocalDateTime.now();
         Medication ibuprofen = Medication.builder()
                 .name("Ibuprofen")
                 .weight( 20.0).code("IBUFEN20")
