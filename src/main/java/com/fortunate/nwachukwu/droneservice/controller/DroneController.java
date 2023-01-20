@@ -31,7 +31,9 @@ public class DroneController {
     }
 
     @PostMapping("/load-medication/{drone-serial}")
-    public ResponseEntity<ApiResponse> loadADroneWithMedication(@PathVariable("drone-serial") String serialNumber , @RequestBody LoadingRequest medicationCodes) {
+    public ResponseEntity<ApiResponse> loadADroneWithMedication(
+            @PathVariable("drone-serial") String serialNumber ,
+            @RequestBody LoadingRequest medicationCodes) {
         return Responder.success(droneService.loadDroneWithMedication(serialNumber, medicationCodes));
     }
 
