@@ -23,7 +23,6 @@ public class DroneBatteryPeriodicCheck {
             Iterable<Drone> drones = droneRepository.findAll();
             drones.forEach(drone ->  log
                     .info("Battery Level for " + drone.getSerialNumber() + " is " + drone.getBatteryCapacity()));
-
     }
 }
 
