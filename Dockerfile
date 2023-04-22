@@ -1,4 +1,4 @@
-FROM openjdk:17-alpine
+FROM openjdk:17
 RUN touch /env.txt
 RUN printenv > /env.txt
 ARG JAR_FILE=/*.jar
@@ -9,4 +9,9 @@ ENTRYPOINT ["java","-jar","target/droneService-0.0.1-SNAPSHOT.jar"]
 # docker build -t userName/droneservice:v1 .
 # docker login --username=userName
 # docker push userName/droneservice:v1
+
+#docker logout
+#docker login --username=userName
+#docker pull nfotech/droneservice:v1
+#docker run -p 8080:8080 nfotech/droneservice:v1
 
